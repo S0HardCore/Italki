@@ -1,0 +1,63 @@
+﻿@section scripts {
+    <script src="http://js-grid.com/js/jsgrid.min.js"></script>
+}
+
+<body>
+    <div id="jsGrid" class="grid-center"></div>
+    <script type="text/javascript">
+        $(function () {
+            $("#jsGrid").jsGrid({
+                width: "70%",
+
+                selecting: true,
+                sorting: true,
+                autoload: true,
+                paging: true,
+                pageLoading: true,
+                pageSize: 20,
+                pageIndex: 1,
+
+                controller: {
+                    loadData: function (filter) {
+                        return $.ajax({
+                            type: "GET",
+                            url: "/Home/Get",
+                            data: filter,
+                            dataType: "JSON"
+                        });
+                    }
+                },
+
+                fields: [
+                    { name: "Name", type: "text", width: 25, validate: "required" },
+                    {
+                        name: "Rating", type: "number", width: 20, align: "center",
+                        itemTemplate: function (value) {
+                            return value == 0 ? "Not rated yet" : $("<div>").addClass("rating").append(Array(Math.min(parseInt(value + 1), 6)).join("&#9733;"));
+                        }
+                    },
+                    { name: "Description", type: "text", width: 150 },
+                    { name: "Students", type: "number", width: 10 },
+                    { name: "Lessons", type: "number", width: 10 },
+                    {
+                        name: "Price", type: "number", width: 10,
+                        itemTemplate: function (value) {
+                            return "<b>" + value.toFixed(2) / 100 + "$</b> </br> per hour";
+                        }
+                    },
+                    { name: "Country", type: "text", width: 20 },
+                    {
+                        itemTemplate: function (_, item) {
+                            return $("<button>").text("More").addClass("btn btn-default")
+                                .on("click", function () {
+                                    location.href = '@Url.Action("Teachers")/' + item.ID;
+                                })
+                        },
+                        width: 1,
+                        sorting: false
+                    }
+                ],
+            });
+        });
+    </script>
+</body>

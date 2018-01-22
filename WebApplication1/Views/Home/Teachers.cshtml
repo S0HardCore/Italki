@@ -1,0 +1,62 @@
+﻿@model WebApplication1.Models.Teacher
+@{
+
+}
+
+<body>
+    <div class="jumbotron">
+        <span class="h1">@Model.Name</span>
+        <span style="float: right">From <b>@Model.Country</b></span>
+        <div>
+            @foreach (var lang in Model.Languages)
+            {
+            <span class="label label-success margin-thin">@lang.LanguageName</span>
+            }
+            <p></p>
+            @foreach (var tag in Model.Tags)
+            {
+            <span class="label label-danger margin-thin">@tag.TagName</span>
+            }
+        </div>
+        <p><div class="alert alert-info">@Model.Description</div></p>
+        <div class="panel panel-warning block-panel">
+            <div class="panel-heading">Rating</div>
+                <div class="panel-body">
+                    <div class="panel-body-text">
+                        @if (Model.Rating < 1)
+                        {
+                            <span class="label label-default">Not rated yet</span>
+                        }
+                        @if (Model.Rating >= 1)
+                        {
+                            <span class="label label-primary">
+                                @for (int a = 0; a < Model.Rating; ++a)
+                                {
+                                <b style="color: gold">★</b>
+                                }
+                            <span style="color: black; font-size: 18px;"> @Model.Rating</span>
+                            </span>
+                        }
+                    </div>
+                </div>
+        </div>
+        <div class="panel panel-warning block-panel">
+            <div class="panel-heading">Students</div>
+            <div class="panel-body">
+                <div class="panel-body-text">@Model.Students</div>
+            </div>
+        </div>
+        <div class="panel panel-warning block-panel">
+            <div class="panel-heading">Lessons</div>
+            <div class="panel-body">
+                <div class="panel-body-text">@Model.Lessons</div>
+            </div>
+        </div>
+        <div class="panel panel-warning block-panel" style="float: right; margin: 0px">
+            <div class="panel-heading">Lesson</div>
+            <div class="panel-body">
+                <div class="panel-body-text"><span><b>$@(Model.Price / 100)</b> per hour</span></div>
+            </div>
+        </div>
+    </div>
+</body>

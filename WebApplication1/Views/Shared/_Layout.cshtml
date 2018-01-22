@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="../../Content/Site.css" />
+    <link href="http://js-grid.com/css/jsgrid.min.css" rel="stylesheet" />
+    <link href="http://js-grid.com/css/jsgrid-theme.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .nickname {
+            padding-left: 8px;
+            font-size: 24px;
+            color: #0019a9
+        }
+
+        .panel{
+            text-align: center;
+        }
+
+        .price {
+            font-size: 13px;
+        }
+
+        .class1 {
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .rating {
+            color: #F8CA03;
+        }
+
+        .grid-center{
+            margin: 5px auto 0px auto;
+        }
+
+        .margin-small{
+            margin: 5px;
+        }
+
+        .margin-thin{
+            margin: 2px;
+        }
+
+        .block-panel{
+            max-width: 25%;
+            display: inline-block;
+            margin-right: 50px;
+        }
+
+        .jsgrid-grid-header,
+        .jsgrid-grid-body {
+            overflow: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://js-grid.com/js/jsgrid.min.js"></script>
+    <title>Teachers</title>
+</head>
+    <body style="padding-top: 50px">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                <a class="navbar-brand">Brand</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-inverse-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a onclick="@("window.location.href='" + @Url.Action("Main") + "'")">Home</a>
+                    </li>
+                    <li>
+                        <a onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'")">Database</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </body>
+</html>

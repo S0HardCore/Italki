@@ -1,0 +1,30 @@
+﻿@{
+
+}
+
+<body>
+    <script>
+        function HandleCheckbox(cb) {
+            var field = document.getElementById("countInput");
+            if (cb.checked)
+                field.value = 256;
+            field.readOnly = cb.checked;
+        }
+        function DisableButton(b) {
+            b.setAttribute('disabled', 'disabled');
+        }
+    </script>
+    @using (Html.BeginForm("Main", "Home", FormMethod.Post))
+    {
+    <div class="margin-small">
+        <div class="form-group" style="display: inline-block">
+            <label>Number of pages:</label>
+            <input type="number" id="countInput" class="form-control" name="count" value="1" min="1" max="256">
+        </div>
+        <div class="checkbox" style="display: inline-block">
+            <label><input type="checkbox" onclick="HandleCheckbox(this);">All</label>
+        </div>
+        <input class="btn btn-info" style="display: inherit" type="submit" value="Update" onclick="setTimeout(DisableButton, 1, this)" />
+    </div>
+    }
+</body>
